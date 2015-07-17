@@ -13,20 +13,20 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 </head>
 
 <body ng-app="app">
     <!-- NAVIGATION -->
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" ui-sref="#">Angular AddCruise 2016</a>
+            <a class="navbar-brand" ui-sref="home">Angular AddCruise 2016</a>
         </div>
         <ul class="nav navbar-nav">
             <li><a ui-sref="home">Home</a></li>
-            <li><a ui-sref="about">About</a></li>            
+            <li><a ui-sref="about">About</a></li>
         </ul>
     </nav>
     <!-- MAIN CONTENT -->
@@ -35,7 +35,7 @@
         <div ui-view></div>
     </div>
     <div class="text-center">
-        <p>Fredrik Persson</p>       
+        <p>Fredrik Persson</p>
     </div>
     <!-- jQuery -->
     <script src="assets/libs/node_modules/jquery/dist/jquery.min.js"></script>
@@ -45,9 +45,11 @@
     <script src="app/app.module.js"></script>
     <script src="app/app.router.js"></script>
     <script src="app/app.controller.js"></script>
-
     <script src="app/components/home/homeController.js"></script>
     <script src="app/components/about/aboutController.js"></script>
+    <script src="app/components/search/searchController.js"></script>
+    <script src="app/components/list/listController.js"></script>
+    <script src="app/components/detail/detailController.js"></script>
 </body>
 
 </html>
