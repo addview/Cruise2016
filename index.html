@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular base structure</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/libs/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="assets/libs/node_modules/angular/angular.min.js"></script>
+    <script src="assets/libs/node_modules/angular-ui-router/build/angular-ui-router.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body ng-app="app">
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="#">Angular 1.4 base structure</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a ui-sref="home">Home</a></li>
+            <li><a ui-sref="about">About</a></li>            
+        </ul>
+    </nav>
+    <!-- MAIN CONTENT -->
+    <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+    <div class="container">
+        <div ui-view></div>
+    </div>
+    <div class="text-center">
+        <p>Fredrik Persson</p>       
+    </div>
+    <!-- jQuery -->
+    <script src="assets/libs/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="assets/libs/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- MyFiles -->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.router.js"></script>
+    <script src="app/app.controller.js"></script>
+
+    <script src="app/components/home/homeController.js"></script>
+    <script src="app/components/about/aboutController.js"></script>
+</body>
+
+</html>
