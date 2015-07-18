@@ -13,6 +13,19 @@ app.controller('searchController', ['$scope', 'searchFilter', function($scope, s
         });        
     };
 
+    $scope.productsDataSource = {
+              type: "odata",
+              serverFiltering: true,
+              transport: {
+                  read: {
+                      url: "http://demos.telerik.com/kendo-ui/service/Northwind.svc/Products",
+                  }
+              }
+          };
+
+
+          console.log($scope.productsDataSource);
+
     var searchfilter = searchFilter.getSearchFilterInit();
 
     searchfilter.then(function(value) {
