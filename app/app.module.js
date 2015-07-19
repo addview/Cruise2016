@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'kendo.directives']);
+var app = angular.module('app', ['ui.router', 'kendo.directives', 'cgBusy']);
 
 
 
