@@ -7,7 +7,7 @@ app.factory('searchFilter', function($http, $log, $q) {
 
         $http({
                 method: 'GET',
-                url: 'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=true&culture=svSE&gateway&destination=9&datefrom=2016-01-01&dateto=2017-02-01&brand&port&ship&change=1',
+                url: 'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2015-08-01&dateto=2016-08-01&brand&port&ship&change=0',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET',
@@ -29,6 +29,7 @@ app.factory('searchFilter', function($http, $log, $q) {
 
     var getSearchFilterChg = function(change, culture, cruiseonly, gateway, destination, datefrom, dateto, brand, port, ship) {
         
+        debugger;
         var deferred = $q.defer();
         //create url string
         var _cruiseonly = 'cruiseonly=' + cruiseonly;
@@ -77,7 +78,7 @@ app.factory('searchFilter', function($http, $log, $q) {
 
         var fixurl = 'http://xg-kid-wks-004/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _dateto + _brand + _port + _ship + _change;
 
-       debugger;
+       
 
 //'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=true&culture=svSE&gateway&destination=9&datefrom=2016-01-01&dateto=2017-02-01&brand&port&ship&change=1'
 

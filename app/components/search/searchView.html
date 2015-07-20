@@ -1,34 +1,41 @@
 <div class="panel panel-default">
     <div class="panel-heading">Search Cruises Filter</div>
-    <div class="panel-body" cg-busy="searchfilter">>
+    <div class="panel-body" cg-busy="searchfilter">
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Gateway</label>
-                            <select class="form-control" ng-model="selectedGatewayItem" ng-change="getToPlaces(1)" ng-options="data.GateWayName for data in gateWays">
+                            <label>Gateway</label>
+                            <select class="form-control" ng-model="selectedGatewayItem" ng-change="changeSelection(1)" ng-options="data.GateWayName for data in displayGateways">
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <!--  <div class="col-sm-3">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Destination</label>
                             <select ng-model="selectedDestinationItem.RegionId" k-on-change="regionChange(kendoEvent)" kendo-combo-box k-placeholder="'Select destination'" k-data-text-field="'RegionName'" k-data-value-field="'RegionId'" k-filter="'contains'" k-auto-bind="true" k-min-length="3" k-data-source="destinationsDataSource" style="width: 100%">
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Destination</label>
+                            <select class="form-control" ng-model="selectedDestinationItem" ng-change="changeSelection(2)" ng-options="data.RegionName for data in displayDestinations">
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Date From</label>
-                            <select class="form-control" ng-model="selectedDateFromItem" ng-options="data for data in displaydateFrom">
+                            <select class="form-control" ng-model="selectedDateFromItem" ng-change="changeSelection(3)" ng-options="data.DateText for data in displaydateFrom">
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Date To</label>
-                            <select class="form-control" ng-model="selectedDateToItem" ng-options="data for data in displaydateTo">
+                            <select class="form-control" ng-model="selectedDateToItem" ng-change="changeSelection(4)" ng-options="data.DateText for data in displaydateTo">
                             </select>
                         </div>
                     </div>
@@ -39,21 +46,21 @@
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Brand</label>
-                            <select class="form-control" ng-model="selectedBrandItem" ng-options="data.BrandName for data in displayBrands">
+                            <select class="form-control" ng-model="selectedBrandItem" ng-change="changeSelection(5)" ng-options="data.BrandName for data in displayBrands">
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Port</label>
-                            <select class="form-control" ng-model="selectedPortItem" ng-options="data.PortName for data in displayPorts">
+                            <select class="form-control" ng-model="selectedPortItem" ng-change="changeSelection(6)" ng-options="data.PortName for data in displayPorts">
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3" ng-show="brandselected">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ship</label>
-                            <select class="form-control" ng-model="selectedShipItem" ng-options="data.GateWayName for data in gateWays" ng-change="getToPlaces()">
+                            <select class="form-control" ng-change="changeSelection(7)" ng-model="selectedShipItem" ng-options="data.GateWayName for data in gateWays" ng-change="getToPlaces()">
                             </select>
                         </div>
                     </div>
@@ -64,8 +71,10 @@
 </div>
 <h1>{{message}}</h1>
 <p>selected gateway item is : {{selectedGatewayItem}}</p>
-<p>selected destination id is : {{selectedDestinationItem.RegionId}}</p>
+<p>selected destination id is : {{selectedDestinationItem}}</p>
 <p>selected date from item is : {{selectedDateFromItem}}</p>
-<p>
-    <input kendo-numerictextbox k-min="1" k-max="10" k-up-arrow-text="'Increment'" k-down-arrow-text="'Decrement'">
-</p>
+<p>selected date to item is : {{selectedDateToItem}}</p>
+<p>selected brand from item is : {{selectedBrandItem}}</p>
+<p>selected port from item is : {{selectedPortItem}}</p>
+<p>selected ship from item is : {{selectedDateShipItem}}</p>
+<p>selected change id: {{dropchange}}</p>
