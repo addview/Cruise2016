@@ -1,6 +1,9 @@
 <div class="panel panel-default">
     <div class="panel-heading">Search Cruises Filter</div>
     <div class="panel-body" cg-busy="searchfilter">
+
+        <div><input type="button" css="btn btn-info" value="knappen"></input></div>
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
@@ -60,7 +63,7 @@
                     <div class="col-sm-3" ng-show="brandselected">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ship</label>
-                            <select class="form-control" ng-change="changeSelection(7)" ng-model="selectedShipItem" ng-options="data.GateWayName for data in gateWays" ng-change="getToPlaces()">
+                            <select class="form-control" ng-change="changeSelection(7)" ng-model="selectedShipItem" ng-options="data.ShipName for data in displayShips">
                             </select>
                         </div>
                     </div>

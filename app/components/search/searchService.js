@@ -7,7 +7,7 @@ app.factory('searchFilter', function($http, $log, $q) {
 
         $http({
                 method: 'GET',
-                url: 'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2015-08-01&dateto=2016-08-01&brand&port&ship&change=0',
+                url: 'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&addmonth=3&brand&port&ship&change=0',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET',
@@ -27,9 +27,9 @@ app.factory('searchFilter', function($http, $log, $q) {
         return deferred.promise;
     };
 
-    var getSearchFilterChg = function(change, culture, cruiseonly, gateway, destination, datefrom, dateto, brand, port, ship) {
+    var getSearchFilterChg = function(change, culture, cruiseonly, gateway, destination, datefrom, addmonth, brand, port, ship) {
         
-        debugger;
+        
         var deferred = $q.defer();
         //create url string
         var _cruiseonly = 'cruiseonly=' + cruiseonly;
@@ -37,7 +37,7 @@ app.factory('searchFilter', function($http, $log, $q) {
         var _gateway;
         var _destination;
         var _datefrom;
-        var _dateto;
+        var _addmonth;
         var _brand;
         var _port;
         var _ship;
@@ -56,28 +56,28 @@ app.factory('searchFilter', function($http, $log, $q) {
         }
 
         _datefrom = '&datefrom=' + datefrom;
-        _dateto = '&dateto=' + dateto;
+        _addmonth = '&addmonth=' + addmonth;
 
-        if (brand == null) {
+        if (brand == null || brand == 0) {
             _brand = '&brand';
         } else {
             _brand = '&brand=' + brand;
         }
 
-         if (port == null) {
+         if (port == null || port == 0) {
             _port = '&port';
         } else {
             _port = '&port=' + port;
         }
 
-        if (ship == null) {
+        if (ship == null || ship == 0) {
             _ship = '&ship';
         } else {
             _ship = '&ship=' + ship;
         }
 
-        var fixurl = 'http://xg-kid-wks-004/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _dateto + _brand + _port + _ship + _change;
-
+        var fixurl = 'http://xg-kid-wks-004/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _addmonth + _brand + _port + _ship + _change;
+       
        
 
 //'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=true&culture=svSE&gateway&destination=9&datefrom=2016-01-01&dateto=2017-02-01&brand&port&ship&change=1'
@@ -95,8 +95,7 @@ app.factory('searchFilter', function($http, $log, $q) {
                     'Content-Type': 'application/json'
                 }
             })
-            .success(function(data) {
-                console.log(data[0]);
+            .success(function(data) {                
                 deferred.resolve(data[0]);
             })
             .error(function(msg, code) {
