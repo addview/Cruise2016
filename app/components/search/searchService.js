@@ -7,7 +7,8 @@ app.factory('searchFilter', function($http, $log, $q) {
 
         $http({
                 method: 'GET',
-                url: 'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&addmonth=3&brand&port&ship&change=0',
+                //url: 'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&addmonth=3&brand&port&ship&change=0',
+                url: 'http://localhost/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&addmonth=3&brand&port&ship&change=0',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET',
@@ -76,14 +77,9 @@ app.factory('searchFilter', function($http, $log, $q) {
             _ship = '&ship=' + ship;
         }
 
-        var fixurl = 'http://xg-kid-wks-004/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _addmonth + _brand + _port + _ship + _change;
+        //var fixurl = 'http://xg-kid-wks-004/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _addmonth + _brand + _port + _ship + _change;
+        var fixurl = 'http://localhost/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _addmonth + _brand + _port + _ship + _change;
        
-       
-
-//'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=true&culture=svSE&gateway&destination=9&datefrom=2016-01-01&dateto=2017-02-01&brand&port&ship&change=1'
-
-        //var fixurltosend = '?cruiseonly=true&culture=svSE&gateway&destination=9&datefrom=2016-01-01&dateto=2017-02-01&brand&port&ship&change=1'
-
         $http({
                 method: 'GET',
                 url: fixurl,
