@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('searchController', ['$scope', 'searchFilter', function($scope, searchFilter) {
+app.controller('searchController', ['$scope', 'searchFilter', '$log', function($scope, searchFilter, $log) {
     $scope.message = 'Hello Fredrik it´s running, on search';
 
     $scope.$on('$stateChangeSuccess', function() {
@@ -13,6 +13,9 @@ app.controller('searchController', ['$scope', 'searchFilter', function($scope, s
 
         $scope.searchfilter.then(function(value) {
             
+
+           
+
             $scope.displayDestinations = value.displaydestinations;
             $scope.displaydateFrom = value.displaydatefrom;
             $scope.displaydateTo = value.displaydateto;
@@ -60,13 +63,23 @@ app.controller('searchController', ['$scope', 'searchFilter', function($scope, s
     };
 
     $scope.changeSelection = function(item) {
-
      
+        var shipId;      
+
+        if ($scope.selectedShipItem === null)
+        {
+            shipId = 0;
+        }
+        else
+        {
+            shipId = $scope.selectedShipItem.ShipId;
+        }     
 
         $scope.searchfilter = searchFilter.getSearchFilterChg(item, 'svSE', false, $scope.selectedGatewayItem.GateWayId, $scope.selectedDestinationItem.RegionId,
-            $scope.selectedDateFromItem.DateId, 3, $scope.selectedBrandItem.BrandId, $scope.selectedPortItem.PortId, $scope.selectedShipItem.ShipId)
+            $scope.selectedDateFromItem.DateId, $scope.selectedDateToItem.DateId, $scope.selectedBrandItem.BrandId, $scope.selectedPortItem.PortId, shipId)
         $scope.searchfilter.then(function(value) {
         
+             $log.info(value);
 
             $scope.displayDestinations = value.displaydestinations;
             $scope.displaydateFrom = value.displaydatefrom;
@@ -89,7 +102,18 @@ app.controller('searchController', ['$scope', 'searchFilter', function($scope, s
             if (fromIndex == -1)
             {
                 fromIndex = 0;
+            }   
+
+            var toIndex = $scope.displaydateTo.map(function(el) {
+                return el.DateId;
+            }).indexOf($scope.selectedIndexArr.DepDateTo);
+
+            if (toIndex == -1)
+            {
+                toIndex = 0;
             }            
+
+            
 
             var gatewayIndex = $scope.displayGateways.map(function(el) {
                 return el.GateWayId;
@@ -99,11 +123,16 @@ app.controller('searchController', ['$scope', 'searchFilter', function($scope, s
                 return el.BrandId;
             }).indexOf($scope.selectedIndexArr.Brandid);
 
-            //if ($scope.displayShips != null) {
+            if ($scope.displayShips != null) {
                 var shipIndex = $scope.displayShips.map(function(el) {
                     return el.ShipId;
                 }).indexOf($scope.selectedIndexArr.Shipid);
-            //}
+            }
+
+            if (typeof shipIndex === "undefined")
+            {
+                shipIndex = 0;
+            }
 
             var portIndex = $scope.displayPorts.map(function(el) {
                 return el.PortId;
@@ -112,24 +141,19 @@ app.controller('searchController', ['$scope', 'searchFilter', function($scope, s
             $scope.selectedGatewayItem = $scope.displayGateways[gatewayIndex];
             $scope.selectedDestinationItem = $scope.displayDestinations[destIndex];
             $scope.selectedDateFromItem = $scope.displaydateFrom[fromIndex];
-            $scope.selectedDateToItem = $scope.displaydateTo[0];
+            $scope.selectedDateToItem = $scope.displaydateTo[toIndex];
             $scope.selectedBrandItem = $scope.displayBrands[brandIndex];
-            $scope.selectedPortItem = $scope.displayPorts[portIndex];
-
-
-            //if ($scope.displayShips != null) {          
-                $scope.selectedShipItem = $scope.displayShips[shipIndex];
-            //}
-
+            $scope.selectedPortItem = $scope.displayPorts[portIndex];                
+           
 
             //don´t show any ships if brand not selected
             if (brandIndex != null && brandIndex != 0) {
+                $scope.selectedShipItem = $scope.displayShips[shipIndex];                
                 $scope.brandselected = true;
             } else {
                 $scope.brandselected = false;
             }
-
         });
     };
-    
+
 }]);

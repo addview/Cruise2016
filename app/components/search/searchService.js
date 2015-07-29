@@ -8,7 +8,7 @@ app.factory('searchFilter', function($http, $log, $q) {
         $http({
                 method: 'GET',
                 //url: 'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&addmonth=3&brand&port&ship&change=0',
-                url: 'http://localhost/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&addmonth=3&brand&port&ship&change=0',
+                url: 'http://localhost/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&dateto=2016-04-01&brand&port&ship&change=0',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET',
@@ -28,7 +28,7 @@ app.factory('searchFilter', function($http, $log, $q) {
         return deferred.promise;
     };
 
-    var getSearchFilterChg = function(change, culture, cruiseonly, gateway, destination, datefrom, addmonth, brand, port, ship) {
+    var getSearchFilterChg = function(change, culture, cruiseonly, gateway, destination, datefrom, dateto, brand, port, ship) {
         
         
         var deferred = $q.defer();
@@ -38,7 +38,7 @@ app.factory('searchFilter', function($http, $log, $q) {
         var _gateway;
         var _destination;
         var _datefrom;
-        var _addmonth;
+        var _dateto;
         var _brand;
         var _port;
         var _ship;
@@ -57,7 +57,7 @@ app.factory('searchFilter', function($http, $log, $q) {
         }
 
         _datefrom = '&datefrom=' + datefrom;
-        _addmonth = '&addmonth=' + addmonth;
+        _dateto = '&dateto=' + dateto;
 
         if (brand == null || brand == 0) {
             _brand = '&brand';
@@ -78,7 +78,7 @@ app.factory('searchFilter', function($http, $log, $q) {
         }
 
         //var fixurl = 'http://xg-kid-wks-004/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _addmonth + _brand + _port + _ship + _change;
-        var fixurl = 'http://localhost/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _addmonth + _brand + _port + _ship + _change;
+        var fixurl = 'http://localhost/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _dateto + _brand + _port + _ship + _change;
        
         $http({
                 method: 'GET',
