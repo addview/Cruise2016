@@ -8,8 +8,12 @@ app.controller('searchController', ['$scope', 'searchFilter', '$log', function($
         onload();
     });
 
+    $scope.showgateway = true;
+
     function onload() {
         $scope.searchfilter = searchFilter.getSearchFilterInit();
+
+        $scope.typofcruise = "FlyandCruise";
 
         $scope.searchfilter.then(function(value) {
             
@@ -64,7 +68,22 @@ app.controller('searchController', ['$scope', 'searchFilter', '$log', function($
 
     $scope.changeSelection = function(item) {
      
-        var shipId;      
+        var shipId;    
+        var typeofCruise;
+        var gatewayId;
+
+        $log.warn($scope.typofcruise);  
+
+        if ($scope.typofcruise === 'FlyandCruise')
+        {
+            typeofCruise = false;
+            $scope.showgateway = true;
+        }
+        else
+        {
+            typeofCruise = true;
+            $scope.showgateway = false;
+        }
 
         if ($scope.selectedShipItem === null)
         {
@@ -73,13 +92,27 @@ app.controller('searchController', ['$scope', 'searchFilter', '$log', function($
         else
         {
             shipId = $scope.selectedShipItem.ShipId;
-        }     
+        } 
+      
 
-        $scope.searchfilter = searchFilter.getSearchFilterChg(item, 'svSE', false, $scope.selectedGatewayItem.GateWayId, $scope.selectedDestinationItem.RegionId,
+        if ($scope.selectedGatewayItem === null)
+        {
+            gatewayId = 0;
+        }
+        else
+        {
+            gatewayId = $scope.selectedGatewayItem.GateWayId;
+        } 
+
+
+
+        $scope.searchfilter = searchFilter.getSearchFilterChg(item, 'svSE', typeofCruise, gatewayId, $scope.selectedDestinationItem.RegionId,
             $scope.selectedDateFromItem.DateId, $scope.selectedDateToItem.DateId, $scope.selectedBrandItem.BrandId, $scope.selectedPortItem.PortId, shipId)
         $scope.searchfilter.then(function(value) {
         
              $log.info(value);
+
+           
 
             $scope.displayDestinations = value.displaydestinations;
             $scope.displaydateFrom = value.displaydatefrom;
@@ -113,11 +146,20 @@ app.controller('searchController', ['$scope', 'searchFilter', '$log', function($
                 toIndex = 0;
             }            
 
-            
+            var gatewayIndex;
 
-            var gatewayIndex = $scope.displayGateways.map(function(el) {
+            if ($scope.displayGateways === null)
+            {
+                gatewayIndex = 0;
+            }
+            else
+            {
+                gatewayIndex = $scope.displayGateways.map(function(el) {
                 return el.GateWayId;
-            }).indexOf($scope.selectedIndexArr.GatewayId);
+                }).indexOf($scope.selectedIndexArr.GatewayId);
+            }
+
+           
 
             var brandIndex = $scope.displayBrands.map(function(el) {
                 return el.BrandId;
@@ -137,8 +179,13 @@ app.controller('searchController', ['$scope', 'searchFilter', '$log', function($
             var portIndex = $scope.displayPorts.map(function(el) {
                 return el.PortId;
             }).indexOf($scope.selectedIndexArr.Portid);
+          
 
-            $scope.selectedGatewayItem = $scope.displayGateways[gatewayIndex];
+            if ($scope.displayGateways != null)
+            {
+                $scope.selectedGatewayItem = $scope.displayGateways[gatewayIndex];
+            }
+            
             $scope.selectedDestinationItem = $scope.displayDestinations[destIndex];
             $scope.selectedDateFromItem = $scope.displaydateFrom[fromIndex];
             $scope.selectedDateToItem = $scope.displaydateTo[toIndex];

@@ -1,14 +1,15 @@
 <div class="panel panel-default">
     <div class="panel-heading">Search Cruises Filter</div>
-    <div class="panel-body" cg-busy="searchfilter">
-
-        <div><input type="button" css="btn btn-info" value="knappen"></input></div>
+    <div class="panel-body" cg-busy="searchfilter">      
 
          <div class="row">
             <div class="col-sm-12">
                <div class="form-group">
-                            <label>Cruise/Only</label>
-                         <input type="checkbox" name="my-checkbox" checked>
+                            <p><label>Type of cruise</label></p>
+                    
+
+                         <input type="radio" name="rdOne" value="FlyandCruise" ng-change="changeSelection(0)" checked ng-model="typofcruise">Fly and Cruise
+                          <input type="radio" name="rdOne" value="CruiseOnly" ng-change="changeSelection(0)" ng-model="typofcruise">Cruise Only
                 </div>
             </div>
         </div>
@@ -16,7 +17,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-3" ng-show="showgateway">
                         <div class="form-group">
                             <label>Gateway</label>
                             <select class="form-control" ng-model="selectedGatewayItem" ng-change="changeSelection(1)" ng-options="data.GateWayName for data in displayGateways">

@@ -44,7 +44,7 @@ app.factory('searchFilter', function($http, $log, $q) {
         var _ship;
         var _change = '&change=' + change;
 
-        if (gateway == null) {
+        if (gateway == null || gateway == 0) {
             _gateway = '&gateway';
         } else {
             _gateway = '&gateway=' + gateway;
