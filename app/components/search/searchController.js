@@ -104,6 +104,17 @@ app.controller('searchController', ['$scope', 'searchFilter', '$log', function($
             gatewayId = $scope.selectedGatewayItem.GateWayId;
         } 
 
+       
+
+        if ($scope.selectedDestinationItem.RegionId === 0)
+        {
+            $scope.showport = false;
+        }
+        else
+        {
+            $scope.showport = true;
+        }
+
 
 
         $scope.searchfilter = searchFilter.getSearchFilterChg(item, 'svSE', typeofCruise, gatewayId, $scope.selectedDestinationItem.RegionId,

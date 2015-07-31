@@ -63,7 +63,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-3" ng-show="showport">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Port</label>
                             <select class="form-control" ng-model="selectedPortItem" ng-change="changeSelection(6)" ng-options="data.PortName for data in displayPorts">
