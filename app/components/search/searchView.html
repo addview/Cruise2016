@@ -1,19 +1,24 @@
 <div class="panel panel-default">
     <div class="panel-heading">Search Cruises Filter</div>
-    <div class="panel-body" cg-busy="searchfilter">      
-
-         <div class="row">
+    <p>dd
+        <ul ng-show="errors && errors.length">
+            <li ng-repeat="error in errors">
+                {{error}}
+            </li>
+        </ul>
+    </p>
+    <div class="panel-body" cg-busy="searchfilter">
+        <div class="row">
             <div class="col-sm-12">
-               <div class="form-group">
-                            <p><label>Type of cruise</label></p>
-                    
-
-                         <input type="radio" name="rdOne" value="FlyandCruise" ng-change="changeSelection(0)" checked ng-model="typofcruise">Fly and Cruise
-                          <input type="radio" name="rdOne" value="CruiseOnly" ng-change="changeSelection(0)" ng-model="typofcruise">Cruise Only
+                <div class="form-group">
+                    <p>
+                        <label>Type of cruise</label>
+                    </p>
+                    <input type="radio" name="rdOne" value="FlyandCruise" ng-change="changeSelection(0)" checked ng-model="typofcruise">Fly and Cruise
+                    <input type="radio" name="rdOne" value="CruiseOnly" ng-change="changeSelection(0)" ng-model="typofcruise">Cruise Only
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">

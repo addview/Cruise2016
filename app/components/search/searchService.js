@@ -8,7 +8,7 @@ app.factory('searchFilter', function($http, $log, $q) {
         $http({
                 method: 'GET',
                 //url: 'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&addmonth=3&brand&port&ship&change=0',
-                url: 'http://localhost/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&dateto=2016-04-01&brand&port&ship&change=0',
+                url: 'http://xg-kid-wks-004/api/v1/cruises/search?cruiseonly=false&culture=svSE&gateway&destination=9&datefrom=2016-01-01&dateto=2016-04-01&brand&port&ship&change=0',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': 'GET',
@@ -29,8 +29,8 @@ app.factory('searchFilter', function($http, $log, $q) {
     };
 
     var getSearchFilterChg = function(change, culture, cruiseonly, gateway, destination, datefrom, dateto, brand, port, ship) {
-        
-        
+
+
         var deferred = $q.defer();
         //create url string
         var _cruiseonly = 'cruiseonly=' + cruiseonly;
@@ -65,7 +65,7 @@ app.factory('searchFilter', function($http, $log, $q) {
             _brand = '&brand=' + brand;
         }
 
-         if (port == null || port == 0) {
+        if (port == null || port == 0) {
             _port = '&port';
         } else {
             _port = '&port=' + port;
@@ -78,8 +78,8 @@ app.factory('searchFilter', function($http, $log, $q) {
         }
 
         //var fixurl = 'http://xg-kid-wks-004/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _addmonth + _brand + _port + _ship + _change;
-        var fixurl = 'http://localhost/api/v1/cruises/search' +  '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _dateto + _brand + _port + _ship + _change;
-       
+        var fixurl = 'http://xg-kid-wks-004/api/v1/cruises/search' + '?' + _cruiseonly + _culture + _gateway + _destination + _datefrom + _dateto + _brand + _port + _ship + _change;
+
         $http({
                 method: 'GET',
                 url: fixurl,
@@ -91,7 +91,7 @@ app.factory('searchFilter', function($http, $log, $q) {
                     'Content-Type': 'application/json'
                 }
             })
-            .success(function(data) {                
+            .success(function(data) {
                 deferred.resolve(data[0]);
             })
             .error(function(msg, code) {
