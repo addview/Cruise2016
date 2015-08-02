@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">Search Cruises Filter</div>
-    <p>dd
+    <p>
         <ul ng-show="errors && errors.length">
             <li ng-repeat="error in errors">
                 {{error}}
@@ -11,11 +11,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <p>
-                        <label>Type of cruise</label>
-                    </p>
-                    <input type="radio" name="rdOne" value="FlyandCruise" ng-change="changeSelection(0)" checked ng-model="typofcruise">Fly and Cruise
-                    <input type="radio" name="rdOne" value="CruiseOnly" ng-change="changeSelection(0)" ng-model="typofcruise">Cruise Only
+                    
+                    <input type="radio" name="rdOne" value="FlyandCruise" ng-change="changeSelection(0)" checked ng-model="typofcruise">&nbsp;Fly and Cruise
+                    <input type="radio" name="rdOne" value="CruiseOnly" ng-change="changeSelection(0)" ng-model="typofcruise">&nbsp;Cruise Only
                 </div>
             </div>
         </div>
@@ -80,6 +78,15 @@
                             <label for="exampleInputEmail1">Ship</label>
                             <select class="form-control" ng-change="changeSelection(7)" ng-model="selectedShipItem" ng-options="data.ShipName for data in displayShips">
                             </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <input type="button" class="btn btn-success pull-right" ng-click="listcruises()"  value="Find your cruise" />
                         </div>
                     </div>
                 </div>

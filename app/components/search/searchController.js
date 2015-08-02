@@ -1,12 +1,19 @@
 var app = angular.module('app');
 
-app.controller('searchController', ['$scope', 'searchFilter', '$log', function($scope, searchFilter, $log) {
+app.controller('searchController', ['$scope', 'searchFilter', '$log', '$rootScope', function($scope, searchFilter, $log,
+    $rootScope) {
     $scope.message = 'Hello Fredrik it´s running, on search';
 
     $scope.$on('$stateChangeSuccess', function() {
         //body on load
         onload();
     });
+
+    $scope.listcruises = function(a,b,c) {
+        // body...
+        $log.warn('gooo');
+        $rootScope.$broadcast("listcruisesclicked");
+    }
 
     // // Display a success toast, with a title
     // toastr.success('Have fun storming the castle!', 'Miracle Max Says')
@@ -104,15 +111,15 @@ app.controller('searchController', ['$scope', 'searchFilter', '$log', function($
             $scope.showport = true;
         }
 
-        function onFailure (info) {
+        function onFailure(info) {
             // body...
         }
 
 
-        function onSuccess (value) {
+        function onSuccess(value) {
             //$log.info(value);
 
-            value.count();
+
 
             $scope.displayDestinations = value.displaydestinations;
             $scope.displaydateFrom = value.displaydatefrom;

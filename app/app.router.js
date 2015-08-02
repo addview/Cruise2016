@@ -29,6 +29,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
             
         })
 
+        .state('test', {
+            url: '/test',
+            views: {
+                '': { templateUrl: 'app/components/test/testView.html' },
+                'columnOne@test': { 
+                    templateUrl: 'app/components/test/testViewHeader.html',
+                    controller: 'testHeaderController'
+                },
+                'columnTwo@test': { 
+                    templateUrl: 'app/components/test/testViewContent.html',
+                    controller: 'testContentController'
+                }
+            }
+        })
+
         .state('about', {
             url: '/about',
             templateUrl: 'app/components/about/aboutView.html',

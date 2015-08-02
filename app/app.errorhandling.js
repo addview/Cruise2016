@@ -8,6 +8,6 @@ app.factory('$exceptionHandler', function($injector) {
         $rootScope.errors = $rootScope.errors || [];
         $rootScope.errors.push(exception.message);
        
-        console.log('Errors' + $rootScope.errors);
+        console.log('Errors: ' + $rootScope.errors);
     };
 })

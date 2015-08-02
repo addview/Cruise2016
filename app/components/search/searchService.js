@@ -1,5 +1,6 @@
 var app = angular.module('app');
 
+
 app.factory('searchFilter', function($http, $log, $q) {
 
     var getSearchFilterInit = function() {
