@@ -9,11 +9,20 @@ app.controller('searchController', ['$scope', 'searchFilter', '$log', '$rootScop
         onload();
     });
 
-    $scope.listcruises = function(a,b,c) {
-        // body...
-        $log.warn('gooo');
-        $rootScope.$broadcast("listcruisesclicked");
-    }
+    
+    $scope.cruiseobj = function(){
+        //skicka över parametrar till listcontroller
+        //url som skall skapas är:
+        var i = 0;
+       
+        var dd = {
+            first: 'fredrik',
+            last: 'persson',
+            address: 'tröskvägen ' + new Date()
+        }
+
+        $rootScope.$broadcast("cruiselistobj", dd);
+    };
 
     // // Display a success toast, with a title
     // toastr.success('Have fun storming the castle!', 'Miracle Max Says')

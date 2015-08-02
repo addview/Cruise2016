@@ -8,5 +8,7 @@ app.controller('aboutController', ['$scope' , '$log', '$rootScope', function($sc
         // body...
         $log.warn('gooo');
         $rootScope.$broadcast("listcruisesclicked");
+
+        
     }
 }]);
