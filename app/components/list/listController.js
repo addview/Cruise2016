@@ -5,6 +5,8 @@ app.controller('listController', ['$scope', '$log', '$rootScope', 'serlistCruise
 
     $scope.$on("cruiselistobj", function(e, post) {
 
+        debugger;
+
         var agencyid = 1;
         var regionid = 7;
         var brandid = null;
@@ -29,7 +31,7 @@ app.controller('listController', ['$scope', '$log', '$rootScope', 'serlistCruise
 
 
         function onSuccess(value) {
-        	
+        	debugger;
             $scope.listallcruises = value;
         }
 
